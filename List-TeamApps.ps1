@@ -1,4 +1,4 @@
-﻿<#
+<#
     .SYNOPSIS
     Query all installed apps in a team.
  
@@ -14,7 +14,7 @@
     To provide feedback or for further assistance email:
     pascal@rimark.de
 
-    .PARAMETER token
+    .PARAMETER LogMsg
     Specify the Bearer Token to authentificate at GraphAPI
     String
 
@@ -41,7 +41,7 @@ function List-TeamApps() {
     https://graph.microsoft.com/v1.0/teams/GROUPID/installedApps?`$expand=teamsAppDefinition
 "@
     $apicall = $api.Replace("GROUPID",$groupid)
-    $apps = Invoke-WebRequest -Method GET -Uri $apicall -Headers @{Authorization="Bearer $bearertoken"} -UseBasicParsing -ContentType "application/json"
+    $apps = Invoke-WebRequest -Method GET -Uri $apicall -Headers @{Authorization="Bearer $token"} -UseBasicParsing -ContentType "application/json"
     $inner = $apps.Content | ConvertFrom-Json
     ($inner.Value).teamsAppDefinition
 }
