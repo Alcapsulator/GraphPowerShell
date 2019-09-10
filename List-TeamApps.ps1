@@ -14,7 +14,7 @@
     To provide feedback or for further assistance email:
     pascal@rimark.de
 
-    .PARAMETER LogMsg
+    .PARAMETER token
     Specify the Bearer Token to authentificate at GraphAPI
     String
 
