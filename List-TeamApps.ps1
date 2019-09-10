@@ -37,11 +37,12 @@ function List-TeamApps() {
         [string]$groupid
    
     )
+    $btoken = $token.replace("`n", "")
     $api = @"
     https://graph.microsoft.com/v1.0/teams/GROUPID/installedApps?`$expand=teamsAppDefinition
 "@
     $apicall = $api.Replace("GROUPID",$groupid)
-    $apps = Invoke-WebRequest -Method GET -Uri $apicall -Headers @{Authorization="Bearer $token"} -UseBasicParsing -ContentType "application/json"
+    $apps = Invoke-WebRequest -Method GET -Uri $apicall -Headers @{Authorization="Bearer $btoken"} -UseBasicParsing -ContentType "application/json"
     $inner = $apps.Content | ConvertFrom-Json
     ($inner.Value).teamsAppDefinition
 }
